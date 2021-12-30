@@ -1,6 +1,6 @@
 int sensorPin = A7;
-int sensorValue;
-int state;
+int sensorValue = 0;
+int state = 0;
 
 
 void setup() {
