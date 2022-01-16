@@ -1,4 +1,28 @@
+#pragma once
 class Cubicle {
+  public:
+    Cubicle();
+    Cubicle(int HES, int LED1, int LED2);
+    int getDoorState();
+    void LEDloop();
+    void setLockedTime();
+    void resetLockedTime();
+    unsigned long getLockedTime();
+  private:
+    int HESPin;//hall effect sensor
+    int LED1Pin;//green
+    int LED2Pin;//red
+    int LED2State = 0;
+    int HSEValue = 0;
+    int doorState = 0;//0 means unlocked and 1 means locked
+    int doorStatePrev = 0;
+    unsigned long startLocking = 0;
+    unsigned long lockedTime = 0;
+    unsigned long lockedTooLong = 15 * 60 * 1000;
+    unsigned long currMillis, prevMillis = 0;
+};
+/*
+  class Cubicle {
   public:
     Cubicle() {}
     Cubicle(int HES, int LED1, int LED2) {
@@ -63,4 +87,6 @@ class Cubicle {
     unsigned long lockedTime = 0;
     unsigned long lockedTooLong = 15 * 60 * 1000;
     unsigned long currMillis, prevMillis = 0;
-};
+  };
+
+*/
