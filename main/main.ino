@@ -92,7 +92,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   for (int i = 0; i < 3; i++) {
-    Serial.print((String)i + ": ");
+    //Serial.print((String)i + ": ");
     int temp = sys[i].getDoorState();
     toilet.setCubicleState(i, temp);//~300 or ~700 in analogRead
     if (toilet.getCubicleState(i)) {
@@ -128,7 +128,8 @@ void loop() {
   Serial.println("Received contents:");
   Serial.println(packetBuffer);
   Udp.endPacket();
-  
+
+  delay(1000);
 }
 String millis2Time(unsigned long t) {
   unsigned long totalSecond = t / 1000;

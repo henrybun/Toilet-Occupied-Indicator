@@ -12,7 +12,7 @@ class Cubicle {
     };
     int getDoorState() {
       HSEValue = analogRead(HESPin);
-      Serial.println(HSEValue);
+      //Serial.println(HSEValue);
       if (doorState == 0) { //door is locked
         if ((HSEValue <= 460) || (HSEValue >= 560)) {
           doorState = 1;
