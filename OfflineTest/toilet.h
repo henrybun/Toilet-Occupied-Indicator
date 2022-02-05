@@ -7,6 +7,7 @@ class Toilet {
     int lightSensorPin[3];  //light resistor
     int lightSensorState[3];                 //1 means queuing, 0 means not queuing
     int queuingLength = 0;
+    int unlockedCubicle = 0;
     unsigned long recentLockedTime[100];
     int lockedTimeIndex = 0;
     double processingTime;
@@ -39,12 +40,12 @@ class Toilet {
       return lightSensorState[index];
     }
     int getUnlockedCubicle() {
-      int temp = 0;
+      unlockedCubicle = 0;
       for (int i = 0; i < 3; i++) {
         if (cubicleState[i] == 0)
-          temp++;
+          unlockedCubicle++;
       }
-      return temp;
+      return unlockedCubicle;
     }
     int getQueuingLength() {
       queuingLength = 0;
@@ -62,6 +63,8 @@ class Toilet {
       return currTime - prevTime; //in millisecond
     }
     unsigned long getWaitTime() {
+      if (unlockedCubicle > 0)
+        return 0;
       waitTime = (queuingLength + 1) * HOLD_TIME / CUBICLE_COUNT;
       return waitTime;
     }
