@@ -1,11 +1,8 @@
-#include <SPI.h>
-
 #include <WiFiNINA.h>
 #include <WiFiUdp.h>
 #include "arduino_secrets.h" 
 
 int status = WL_IDLE_STATUS;
-
 //WiFi
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
@@ -38,6 +35,7 @@ void setup()
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    WiFi.config(192.169.0.150);
     status = WiFi.begin(ssid, pass);
 
     // wait 5 seconds for connection:

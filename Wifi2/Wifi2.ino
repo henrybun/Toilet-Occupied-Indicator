@@ -1,10 +1,10 @@
 #include <WiFiNINA.h>
 #include <WiFiUdp.h>
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 
 int status = WL_IDLE_STATUS;
 
-  IPAddress ip(192, 168, 0, 110);
+IPAddress ip(192, 168, 0, 110);
 //WiFi
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
@@ -52,20 +52,20 @@ void setup()
 
 void loop()
 {
- 
-    int packetSize = Udp.parsePacket();
-    Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
-    Udp.println("0: "+(String)millis()); //Message send to server
-    Serial.println(WiFi.localIP()); //Print message send to server
-    
-    int len = Udp.read(packetBuffer, 255);
-    if (len > 0) {
-      packetBuffer[len] = 0;
-    }
-    Serial.println("Received contents:");
-    Serial.println(packetBuffer);
-    Udp.endPacket();
-    delay(1000);
+
+  int packetSize = Udp.parsePacket();
+  Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
+  Udp.println("0: " + (String)millis()); //Message send to server
+  Serial.println(WiFi.localIP()); //Print message send to server
+
+  int len = Udp.read(packetBuffer, 255);
+  if (len > 0) {
+    packetBuffer[len] = 0;
+  }
+  Serial.println("Received contents:");
+  Serial.println(packetBuffer);
+  Udp.endPacket();
+  delay(1000);
 }
 
 void printWifiStatus() {
