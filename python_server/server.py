@@ -12,7 +12,7 @@ now = now.strftime("%H:%M:%S")
 now = now.encode();
 
 def millis2Time(t):
-    t=int(t)
+    t = int(t)
     totalSecond = int(t / 1000)
     hour = int(totalSecond / 3600)
     minute = int((totalSecond % 3600) / 60)
